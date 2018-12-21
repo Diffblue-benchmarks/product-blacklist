@@ -16,6 +16,7 @@ public class CustomerBlacklistId {
         return customerId;
     }
 
+    @SuppressWarnings("unused")
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
@@ -25,6 +26,7 @@ public class CustomerBlacklistId {
         return sku;
     }
 
+    @SuppressWarnings("unused")
     public void setSku(Long blacklistedOn) {
         this.sku = sku;
     }

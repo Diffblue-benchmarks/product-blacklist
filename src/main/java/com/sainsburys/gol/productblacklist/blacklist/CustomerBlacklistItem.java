@@ -15,7 +15,7 @@ public class CustomerBlacklistItem {
     private CustomerBlacklistId id;
     private Date blacklistedOn;
 
-    public CustomerBlacklistItem(String customerId, String sku, Date blacklistedOn) {
+    CustomerBlacklistItem(String customerId, String sku, Date blacklistedOn) {
         this.id = new CustomerBlacklistId(customerId, sku);
         this.blacklistedOn = blacklistedOn;
     }
@@ -34,14 +34,17 @@ public class CustomerBlacklistItem {
         return blacklistedOn;
     }
 
+    @SuppressWarnings("unused")
     public void setCustomerId(String customerId) {
         this.id = new CustomerBlacklistId(customerId, id.getSku());
     }
 
+    @SuppressWarnings("unused")
     public void setBlacklistedOn(Date blacklistedOn) {
         this.blacklistedOn = blacklistedOn;
     }
 
+    @SuppressWarnings("unused")
     public void setSku(String sku) {
         this.id = new CustomerBlacklistId(id.getCustomerId(), sku);
     }
