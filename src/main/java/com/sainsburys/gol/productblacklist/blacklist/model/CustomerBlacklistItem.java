@@ -1,4 +1,4 @@
-package com.sainsburys.gol.productblacklist.blacklist;
+package com.sainsburys.gol.productblacklist.blacklist.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
@@ -15,7 +15,7 @@ public class CustomerBlacklistItem {
     private CustomerBlacklistId id;
     private Date blacklistedOn;
 
-    CustomerBlacklistItem(String customerId, String sku, Date blacklistedOn) {
+    public CustomerBlacklistItem(String customerId, String sku, Date blacklistedOn) {
         this.id = new CustomerBlacklistId(customerId, sku);
         this.blacklistedOn = blacklistedOn;
     }
@@ -36,7 +36,7 @@ public class CustomerBlacklistItem {
 
     @SuppressWarnings("unused")
     public void setCustomerId(String customerId) {
-        this.id = new CustomerBlacklistId(customerId, id.getSku());
+        this.id = new CustomerBlacklistId(customerId, id != null ? id.getSku() : null);
     }
 
     @SuppressWarnings("unused")
@@ -46,6 +46,6 @@ public class CustomerBlacklistItem {
 
     @SuppressWarnings("unused")
     public void setSku(String sku) {
-        this.id = new CustomerBlacklistId(id.getCustomerId(), sku);
+        this.id = new CustomerBlacklistId(id != null ? id.getCustomerId() : null, sku);
     }
 }

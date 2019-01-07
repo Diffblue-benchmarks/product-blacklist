@@ -1,12 +1,12 @@
-package com.sainsburys.gol.productblacklist.blacklist;
+package com.sainsburys.gol.productblacklist.blacklist.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class CustomerBlacklistId {
     private String customerId;
     private String sku;
@@ -27,7 +27,7 @@ public class CustomerBlacklistId {
     }
 
     @SuppressWarnings("unused")
-    public void setSku(Long blacklistedOn) {
+    public void setSku(String sku) {
         this.sku = sku;
     }
 }
