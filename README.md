@@ -21,6 +21,8 @@ Allows to manage a blacklist for a customer.
 
 As an alternative, you can simply create the files ```<home>/.aws/credentials``` and ```<home>/.aws/config``` with the credentials without the need to install aws client.
 
+PS: If using docker, you need to set the environment variables AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+
 ### B) Install maven.
 
 As per instructions: https://maven.apache.org/install.html.
