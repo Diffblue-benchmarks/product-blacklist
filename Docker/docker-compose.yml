@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  product-blacklist:
+    container_name: products-blacklist
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sainsburys/products-blacklist:latest
+    ports:
+      - "8080:8080"
+
+  prometheus:
+    image: quay.io/prometheus/prometheus:v2.0.0
+    volumes:
+      - ../src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus"
+    ports:
+      - 9090:9090
+    depends_on:
+      - product-blacklist
