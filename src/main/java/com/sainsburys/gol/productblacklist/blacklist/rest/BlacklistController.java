@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
-@Timed
 public class BlacklistController {
 
     private final BlacklistRepository blacklistRepository;
