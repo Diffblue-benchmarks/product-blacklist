@@ -2,7 +2,6 @@ package com.sainsburys.gol.productblacklist.blacklist.rest;
 
 import com.sainsburys.gol.productblacklist.blacklist.model.CustomerBlacklistItem;
 import com.sainsburys.gol.productblacklist.blacklist.persistence.BlacklistRepository;
-import io.micrometer.core.annotation.Timed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

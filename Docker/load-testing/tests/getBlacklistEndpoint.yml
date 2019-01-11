@@ -1,0 +1,39 @@
+# Is this project the best place to have the load tests or should we keep them external?
+execution:
+  - executor: gatling
+    scenario: blacklistapi
+    concurrency: 1
+    ramp-up: 2s
+    hold-for: 10s
+
+scenarios:
+  blacklistapi:
+    default-address: localhost:8080/
+    headers:
+      X-Tracking: false
+      Accept: "*/*"
+    requests:
+      - url: blacklist/4
+        method: GET
+        headers:
+          Accept: application/json
+        assert:
+          - contains:
+              - 200
+            subject: http-code
+      - url: blacklist/4/5
+        method: POST
+        headers:
+          Accept: application/json
+        assert:
+          - contains:
+              - 201
+            subject: http-code
+      - url: blacklist/4/5
+        method: DELETE
+        headers:
+          Accept: application/json
+        assert:
+          - contains:
+              - 204
+            subject: http-code
