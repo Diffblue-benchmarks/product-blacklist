@@ -17,7 +17,7 @@ params:
   MAVEN_BASEDIR: product-blacklist-repo
 
 run:
-  path: product-blacklist-repo/concourse/tasks/build.sh
+  path: product-blacklist-repo/concourse/tasks/package.sh
   args:
     - product-blacklist-repo
     - product-blacklist-jar
