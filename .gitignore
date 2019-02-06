@@ -4,6 +4,8 @@
 mvnw*
 *.log
 
+concourse/credentials/nonProd.yml
+
 ### STS ###
 .apt_generated
 .classpath
