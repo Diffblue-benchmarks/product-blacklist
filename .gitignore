@@ -5,6 +5,7 @@ mvnw*
 *.log
 
 .DS_Store
+concourse/tasks/build*
 
 ### STS ###
 .apt_generated

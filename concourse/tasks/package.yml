@@ -17,5 +17,7 @@ params:
   MAVEN_BASEDIR: product-blacklist-repo
 
 run:
-  path: "mvn"
-  args: ["-f", "product-blacklist-repo/pom.xml", "package", "-DskipTest", "-X", "-e"]
+  path: product-blacklist/concourse/tasks/build.sh
+  args:
+    - product-blacklist-repo
+    - product-blacklist-jar
