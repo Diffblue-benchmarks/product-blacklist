@@ -1,0 +1,21 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: sonarqube
+    tag: latest
+
+inputs:
+  - name: product-blacklist-repo
+
+outputs:
+  - name: blacklist-release
+
+params:
+  MAVEN_BASEDIR: product-blacklist-repo
+
+run:
+  path: "product-blacklist-repo/mvnw"
+  args: ["-f", "product-blacklist-repo/pom.xml", "package", "sonar:sonar"]

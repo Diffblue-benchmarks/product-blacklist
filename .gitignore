@@ -4,8 +4,7 @@
 mvnw*
 *.log
 
-concourse/credentials/nonProd.yml
-aaxx
+.DS_Store
 
 ### STS ###
 .apt_generated

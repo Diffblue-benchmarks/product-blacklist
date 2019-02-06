@@ -1,0 +1,16 @@
+resources:
+  - name: product-blacklist-repo
+    type: git
+    check_every: 10s
+    source:
+      uri: https://github.com/JSainsburyPLC/product-blacklist.git
+      branch: master
+
+jobs:
+  - name: build-and-unittest
+    public: true
+    plan:
+      - get: product-blacklist-repo
+        trigger: true
+      - task: Build Project
+        file: product-blacklist-repo/concourse/tasks/package.yml
