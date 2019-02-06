@@ -22,7 +22,7 @@ jobs:
         file: product-blacklist-repo/concourse/tasks/package.yml
       - put: github-release
         params:
-          name: product-blacklist-repo/target/product-blacklist-0.0.1-SNAPSHOT.jar
+          name: product-blacklist-jar/product-blacklist-0.0.1-SNAPSHOT.jar
           tag: product-blacklist-repo/target/product-blacklist-0.0.1T.jar
           globs:
             - product-blacklist-repo/target/product-blacklist-0.0.1-SNAPSHOT/product-blacklist-0.0.1-SNAPSHOT.jar
