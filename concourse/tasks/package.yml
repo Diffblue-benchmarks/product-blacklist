@@ -1,11 +1,11 @@
 ---
 platform: linux
 
-image_resource:
-  type: docker-image
-  source:
-    repository: sonarqube
-    tag: latest
+#image_resource:
+#  type: docker-image
+#  source:
+#    repository: sonarqube
+#    tag: latest
 
 inputs:
   - name: product-blacklist-repo
@@ -18,4 +18,4 @@ params:
 
 run:
   path: "product-blacklist-repo/mvnw"
-  args: ["-f", "product-blacklist-repo/pom.xml", "package", "sonar:sonar"]
+  args: ["-f", "product-blacklist-repo/pom.xml", "package"]
