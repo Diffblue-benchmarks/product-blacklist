@@ -18,4 +18,4 @@ params:
 
 run:
   path: "mvn"
-  args: ["-f", "product-blacklist-repo/pom.xml", "package", "-DskipTest"]
+  args: ["-f", "product-blacklist-repo/pom.xml", "package", "-DskipTest", "-X -e"]
