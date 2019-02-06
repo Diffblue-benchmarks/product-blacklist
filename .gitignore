@@ -5,6 +5,7 @@ mvnw*
 *.log
 
 concourse/credentials/nonProd.yml
+aaxx
 
 ### STS ###
 .apt_generated
