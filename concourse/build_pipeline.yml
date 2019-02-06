@@ -21,8 +21,3 @@ jobs:
       - task: Build Project
         file: product-blacklist-repo/concourse/tasks/package.yml
       - put: github-release
-        params:
-          name: version/version
-          tag: version/version
-          globs:
-            - build/build.tar.gz
