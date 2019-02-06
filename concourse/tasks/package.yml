@@ -17,5 +17,5 @@ params:
   MAVEN_BASEDIR: product-blacklist-repo
 
 run:
-  path: "product-blacklist-repo/mvnw"
+  path: "mvn"
   args: ["-f", "product-blacklist-repo/pom.xml", "package"]
