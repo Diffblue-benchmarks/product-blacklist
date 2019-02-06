@@ -11,7 +11,7 @@ inputs:
   - name: product-blacklist-repo
 
 outputs:
-  - name: blacklist-release
+  - name: product-blacklist-jar
 
 params:
   MAVEN_BASEDIR: product-blacklist-repo

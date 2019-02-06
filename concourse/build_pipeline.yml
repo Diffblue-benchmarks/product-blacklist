@@ -6,6 +6,12 @@ resources:
       uri: https://github.com/JSainsburyPLC/product-blacklist.git
       branch: master
 
+  - name: github-release
+    type: github-release
+    source:
+      owner: JSainsburyPLC
+      repository: product-blacklist
+
 jobs:
   - name: build-and-unittest
     public: true
@@ -14,3 +20,9 @@ jobs:
         trigger: true
       - task: Build Project
         file: product-blacklist-repo/concourse/tasks/package.yml
+      - put: github-release
+        params:
+          name: version/version
+          tag: version/version
+          globs:
+            - build/build.tar.gz
