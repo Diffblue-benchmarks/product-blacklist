@@ -1,0 +1,5 @@
+cf-url: https://api.sys.nonprod.pcf.js-devops.co.uk
+cf-username: <youruser>@sainsburys.co.uk
+cf-password: <yourpass>
+cf-organization: gol
+cf-space: java

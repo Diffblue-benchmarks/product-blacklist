@@ -4,6 +4,8 @@
 mvnw*
 *.log
 
+concourse/config/product-blacklist.config.yml
+
 .DS_Store
 concourse/tasks/build*
 
