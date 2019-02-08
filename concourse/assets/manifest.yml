@@ -15,7 +15,7 @@ applications:
 #      - route: {{gol_api_subdomain}}/customer
 #      - route: {{gol_api_subdomain}}/v1/customer
 #      - route: {{gol_api_subdomain}}/consents
-    buildpack: java_offline_buildpack
+    buildpack: java_buildpack_offline
 #    command: ./services/customer/customer
 #    services:
 #      - websphere-commerce
