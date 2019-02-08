@@ -20,6 +20,7 @@ ls -las ${BUILD_DIR}
 
 echo "copying files to output directory"
 cp ${REPO_DIR}/target/*.jar ${BUILD_DIR}
+cp ${REPO_DIR}/concourse/assets/manifest.yml ${BUILD_DIR}
 
 echo "list build dir after copying"
 ls -las ${BUILD_DIR}
