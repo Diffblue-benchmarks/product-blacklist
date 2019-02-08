@@ -13,9 +13,6 @@ inputs:
 outputs:
   - name: product-blacklist-jar
 
-params:
-  MAVEN_BASEDIR: product-blacklist-repo
-
 run:
   path: product-blacklist-repo/concourse/tasks/package.sh
   args:
