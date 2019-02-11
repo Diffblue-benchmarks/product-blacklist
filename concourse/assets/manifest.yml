@@ -3,28 +3,8 @@ applications:
   - name: product-blacklist
     env:
       GOL_LOGGING_LEVEL: info
-#      GOL_PATH: https://{{services_host}}
-#      GOL_ENV: {{gol_env}}
     memory: 1024M
     disk_quota: 1024M
     instances: 2
     path: product-blacklist-0.0.1-SNAPSHOT.jar
-#    routes:
-#      - route: {{services_host}}/customer
-#      - route: {{services_host}}/v1/customer
-#      - route: {{services_host}}/consents
-#      - route: {{gol_api_subdomain}}/customer
-#      - route: {{gol_api_subdomain}}/v1/customer
-#      - route: {{gol_api_subdomain}}/consents
     buildpack: java_buildpack_offline
-#    command: ./services/customer/customer
-#    services:
-#      - websphere-commerce
-#      - cpm
-#      - api-client-keys
-#      - recaptcha
-#      - gol-autoscale
-#      - new-relic-config
-#      - syslog
-#      - validation-jwt
-#      - food-maestro

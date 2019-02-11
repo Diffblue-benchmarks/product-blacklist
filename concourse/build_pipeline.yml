@@ -5,24 +5,44 @@ resources:
     source:
       uri: https://github.com/JSainsburyPLC/product-blacklist.git
       branch: master
+      private_key: {{git-key}}
 
-  - name: github-release
-    type: github-release
+  - name: test-env
+    type: cf
     source:
-      owner: JSainsburyPLC
-      repository: product-blacklist
+      api: {{cf-url}}
+      username: {{cf-username}}
+      password: {{cf-password}}
+      organization: {{cf-organization}}
+      space: {{cf-space}}
+
+  - name: version
+    type: semver
+    source:
+      driver: git
+      uri: git@github.com:JSainsburyPLC/golservices-java-devops.git
+      branch: master
+      file: versions/product-blacklist-version
+      private_key: {{git-key}}
 
 jobs:
+  - name: increment-version
+    plan:
+      - get: version
+        params: {bump: patch}
+      - put: version
+        params: {file: version/version}
+
   - name: build-and-unittest
     public: true
     plan:
-      - get: product-blacklist-repo
+      - get: version
         trigger: true
+        passed: [increment-version]
+      - get: product-blacklist-repo
+        timeout: 15s
       - task: Build Project
         file: product-blacklist-repo/concourse/tasks/package.yml
-      - put: github-release
+      - put: test-env
         params:
-          name: product-blacklist-jar/product-blacklist-0.0.1-SNAPSHOT.jar
-          tag: product-blacklist-repo/target/product-blacklist-0.0.1T.jar
-          globs:
-            - product-blacklist-repo/target/product-blacklist-0.0.1-SNAPSHOT/product-blacklist-0.0.1-SNAPSHOT.jar
+          manifest: product-blacklist-jar/manifest.yml
