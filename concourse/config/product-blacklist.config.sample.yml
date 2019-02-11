@@ -1,6 +1,9 @@
 git-key: |
   <your git ssh key>
 
+aws-access-key: <your aws access key>
+aws-secret-key: <your aws secret key>
+
 cf-url: https://api.sys.nonprod.pcf.js-devops.co.uk
 cf-username: <youruser>@sainsburys.co.uk
 cf-password: <yourpass>

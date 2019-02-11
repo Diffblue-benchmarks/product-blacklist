@@ -18,3 +18,5 @@ run:
   args:
     - product-blacklist-repo
     - product-blacklist-jar
+    - {{aws-access-key}}
+    - {{aws-secret-key}}
