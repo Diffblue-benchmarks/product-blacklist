@@ -1,5 +1,6 @@
 git-key: |
   <your git ssh key>
+git-access-token: <your access token>
 
 aws-access-key: <your aws access key>
 aws-secret-key: <your aws secret key>
