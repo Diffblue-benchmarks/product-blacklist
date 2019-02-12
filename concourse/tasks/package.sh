@@ -7,15 +7,15 @@ echo $(pwd)
 echo ${REPO_DIR}
 echo ${BUILD_DIR}
 
-echo "setting aws keys"
-export AWS_ACCESS_KEY_ID=$3
-export AWS_SECRET_ACCESS_KEY=$4
-
-echo ${AWS_ACCESS_KEY_ID}
-echo ${AWS_SECRET_ACCESS_KEY}
+#echo "setting aws keys"
+#export AWS_ACCESS_KEY_ID=$3
+#export AWS_SECRET_ACCESS_KEY=$4
+#
+#echo ${AWS_ACCESS_KEY_ID}
+#echo ${AWS_SECRET_ACCESS_KEY}
 
 # TODO remove skipTests once the integration tests are sorted
-mvn -f product-blacklist-repo/pom.xml clean package -X -e
+mvn -f product-blacklist-repo/pom.xml clean package -X -e -DskipTests
 
 echo "list repo dir"
 ls ${REPO_DIR}
