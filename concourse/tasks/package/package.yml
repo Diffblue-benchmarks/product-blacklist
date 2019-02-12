@@ -15,7 +15,7 @@ outputs:
   - name: product-blacklist-jar
 
 run:
-  path: product-blacklist-repo/concourse/tasks/package.sh
+  path: product-blacklist-repo/concourse/tasks/package/package.sh
   args:
     - product-blacklist-repo
     - product-blacklist-jar

@@ -1,0 +1,15 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: linux
+    tag: latest
+
+params:
+  MESSAGE: "Just a test message"
+  TEAMS_WEBHOOK_URL: ((teams-url))
+
+run:
+  path: product-blacklist-repo/concourse/tasks/notify/notify.sh
