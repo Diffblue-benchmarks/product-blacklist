@@ -9,6 +9,7 @@ image_resource:
 
 inputs:
   - name: product-blacklist-repo
+  - name: version
 
 outputs:
   - name: product-blacklist-jar
@@ -18,3 +19,4 @@ run:
   args:
     - product-blacklist-repo
     - product-blacklist-jar
+    - version

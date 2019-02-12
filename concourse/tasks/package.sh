@@ -3,6 +3,8 @@
 REPO_DIR=$(pwd)/$1
 BUILD_DIR=$(pwd)/$2
 
+VERSION=$3
+
 echo $(pwd)
 echo ${REPO_DIR}
 echo ${BUILD_DIR}
