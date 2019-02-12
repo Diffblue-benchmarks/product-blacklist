@@ -17,7 +17,7 @@ echo ${BUILD_DIR}
 #echo ${AWS_SECRET_ACCESS_KEY}
 
 # TODO remove skipTests once the integration tests are sorted
-mvn -f product-blacklist-repo/pom.xml clean package -X -e -DskipTests
+mvn -f product-blacklist-repo/pom.xml clean package -X -e
 
 echo "list repo dir"
 ls ${REPO_DIR}

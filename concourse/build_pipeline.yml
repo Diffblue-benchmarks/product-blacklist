@@ -1,3 +1,10 @@
+resource_types:
+  - name: teams-notification
+    type: docker-image
+    source:
+      repository: navicore/teams-notification-resource
+      tag: latest
+
 resources:
   - name: product-blacklist-repo
     type: git
@@ -7,6 +14,13 @@ resources:
       branch: master
       private_key: {{git-key}}
 
+  - name: github-release
+    type: github-release
+    source:
+      owner: JSainsburyPLC
+      repository: product-blacklist
+      access_token: {{git-access-token}}
+
   - name: test-env
     type: cf
     source:
@@ -14,7 +28,7 @@ resources:
       username: {{cf-username}}
       password: {{cf-password}}
       organization: {{cf-organization}}
-      space: {{cf-space}}
+      space: {{cf-dev-space}}
 
   - name: version
     type: semver
@@ -25,24 +39,75 @@ resources:
       file: versions/product-blacklist-version
       private_key: {{git-key}}
 
+  - name: notification
+    type: teams-notification
+    source:
+      url: {{teams-url}}
+
 jobs:
   - name: increment-version
     plan:
+      - get: product-blacklist-repo
+        trigger: true
       - get: version
         params: {bump: patch}
       - put: version
         params: {file: version/version}
 
   - name: build-and-unittest
-    public: true
     plan:
       - get: version
         trigger: true
         passed: [increment-version]
       - get: product-blacklist-repo
-        timeout: 15s
       - task: Build Project
-        file: product-blacklist-repo/concourse/tasks/package.yml
+        file: product-blacklist-repo/concourse/tasks/package/package.yml
+        on_failure:
+          put: notification
+          params:
+            text: Error occurred while building and running tests.
+            title: $BUILD_PIPELINE_NAME Build "#"$BUILD_NAME
+            actionName: Go to Build $BUILD_NAME
+            actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+      - put: github-release
+        params:
+          name: version/version
+          tag: version/version
+          globs:
+            - product-blacklist-jar/product-blacklist-0.0.1-SNAPSHOT.jar
+            - product-blacklist-jar/manifest.yml
+            - product-blacklist-jar/manifest_prod.yml
+
+  - name: deploy-test
+    plan:
+      - get: github-release
+        trigger: true
+        passed: [build-and-unittest]
       - put: test-env
         params:
-          manifest: product-blacklist-jar/manifest.yml
+          manifest: github-release/manifest.yml
+        on_success:
+          put: notification
+          params:
+            text: Deployed successfully on test.
+            title: $BUILD_PIPELINE_NAME Build "#"$BUILD_NAME
+            actionName: Go to Build $BUILD_NAME
+            actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+        on_failure:
+          put: notification
+          params:
+            color: EA4300
+            text: Error occurred while deploying $BUILD_PIPELINE_NAME to PCF on Test Environment.
+            title: $BUILD_PIPELINE_NAME Build "#"$BUILD_NAME
+            actionName: Go to Build $BUILD_NAME
+            actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
+
+#FIXME can't put manifest in release. Need to find another way to do it. Production will have a different manifest probably. Autoscaling?
+#  - name: deploy-staging
+#    plan:
+#      - get: github-release
+#        trigger: true
+#        passed: [deploy-test, build-and-unittest]
+#      - put: test-env
+#        params:
+#          manifest: github-release/manifest.yml
