@@ -3,6 +3,8 @@ applications:
   - name: product-blacklist-test
     env:
       GOL_LOGGING_LEVEL: info
+      AWS_ACCESS_KEY_ID: ((aws-access-key))
+      AWS_SECRET_ACCESS_KEY: ((aws-secret-key))
     memory: 1024M
     disk_quota: 1024M
     instances: 2
