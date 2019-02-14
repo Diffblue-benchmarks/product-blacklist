@@ -65,9 +65,10 @@ jobs:
         on_failure:
           put: notification
           params:
+            color: EA4300
             text: Error occurred while building and running tests.
-            title: $BUILD_PIPELINE_NAME Build "#"$BUILD_NAME
-            actionName: Go to Build $BUILD_NAME
+            title: BOOOOOOOOM! $BUILD_PIPELINE_NAME $BUILD_JOB_NAME "#"$BUILD_NAME
+            actionName: Go to FAILURE
             actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
       - put: github-release
         params:
@@ -90,16 +91,16 @@ jobs:
           put: notification
           params:
             text: Deployed successfully on test.
-            title: $BUILD_PIPELINE_NAME Build "#"$BUILD_NAME
-            actionName: Go to Build $BUILD_NAME
+            title: yay! $BUILD_PIPELINE_NAME $BUILD_JOB_NAME "#"$BUILD_NAME successful
+            actionName: Go to build
             actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
         on_failure:
           put: notification
           params:
             color: EA4300
             text: Error occurred while deploying $BUILD_PIPELINE_NAME to PCF on Test Environment.
-            title: $BUILD_PIPELINE_NAME Build "#"$BUILD_NAME
-            actionName: Go to Build $BUILD_NAME
+            title: BOOOOOOOOM! $BUILD_PIPELINE_NAME $BUILD_JOB_NAME "#"$BUILD_NAME
+            actionName: Go to FAILURE
             actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
 
 #FIXME can't put manifest in release. Need to find another way to do it. Production will have a different manifest probably. Autoscaling?
