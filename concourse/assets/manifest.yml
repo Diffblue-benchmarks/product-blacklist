@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: product-blacklist
+  - name: product-blacklist-test
     env:
       GOL_LOGGING_LEVEL: info
     memory: 1024M
