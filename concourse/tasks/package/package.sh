@@ -19,7 +19,11 @@ echo ${BUILD_DIR}
 # TODO remove skipTests once the integration tests are sorted
 mvn -f product-blacklist-repo/pom.xml clean package -X -e
 
-if [[ ! -f target/*.jar ]]; then
+echo `pwd`
+echo `ls target`
+echo `ls ./target`
+
+if [ ! -f target/*.jar ]; then
     echo "No jar files found. Exiting with error"
     exit -1
 fi
