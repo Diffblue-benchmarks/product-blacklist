@@ -71,6 +71,8 @@ jobs:
       - get: product-blacklist-repo
       - task: Build Project
         file: product-blacklist-repo/concourse/tasks/package/package.yml
+        params:
+          version: version/version
         on_failure:
           put: notification
           params:
