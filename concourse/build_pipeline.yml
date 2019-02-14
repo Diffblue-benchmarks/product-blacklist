@@ -29,6 +29,9 @@ resources:
       password: {{cf-password}}
       organization: {{cf-organization}}
       space: {{cf-dev-space}}
+      environment_variables:
+        AWS_ACCESS_KEY_ID: aws-access-key
+        AWS_SECRET_ACCESS_KEY: aws-secret-key
 
   - name: preprod-env
     type: cf
@@ -38,6 +41,9 @@ resources:
       password: {{cf-password}}
       organization: {{cf-organization}}
       space: {{cf-dev-space}}
+      environment_variables:
+        AWS_ACCESS_KEY_ID: {{aws-access-key}}
+        AWS_SECRET_ACCESS_KEY: {{aws-secret-key}}
 
   - name: version
     type: semver
