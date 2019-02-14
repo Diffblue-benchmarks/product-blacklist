@@ -62,13 +62,6 @@ jobs:
       - get: product-blacklist-repo
       - task: Build Project
         file: product-blacklist-repo/concourse/tasks/package/package.yml
-        on_failure:
-          put: notification
-          params:
-            text: Error occurred while building and running tests.
-            title: $BUILD_PIPELINE_NAME Build "#"$BUILD_NAME
-            actionName: Go to Build $BUILD_NAME
-            actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
       - put: github-release
         params:
           name: version/version
@@ -77,6 +70,13 @@ jobs:
             - product-blacklist-jar/product-blacklist-0.0.1-SNAPSHOT.jar
             - product-blacklist-jar/manifest.yml
             - product-blacklist-jar/manifest_prod.yml
+        on_failure:
+          put: notification
+          params:
+            text: Error occurred while building and running tests.
+            title: $BUILD_PIPELINE_NAME Build "#"$BUILD_NAME
+            actionName: Go to Build $BUILD_NAME
+            actionTarget: $ATC_EXTERNAL_URL/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME
 
   - name: deploy-test
     plan:
