@@ -86,7 +86,7 @@ jobs:
           name: version/version
           tag: version/version
           globs:
-            - product-blacklist-jar/product-blacklist-0.0.1-SNAPSHOT.jar
+            - product-blacklist-jar/product-blacklist-*.jar
             - product-blacklist-jar/manifest.yml
             - product-blacklist-jar/manifest_prod.yml
 
