@@ -101,7 +101,6 @@ jobs:
           environment_variables:
             AWS_ACCESS_KEY_ID: {{aws-access-key}}
             AWS_SECRET_ACCESS_KEY: {{aws-secret-key}}
-
         on_success:
           put: notification
           params:
