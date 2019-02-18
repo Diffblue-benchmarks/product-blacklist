@@ -8,7 +8,7 @@ image_resource:
     tag: latest
 
 inputs:
-  - name: {{git-repo-name}}
+  - name: ((git-repo-name))
   - name: version
 
 outputs:
@@ -17,6 +17,6 @@ outputs:
 run:
   path: ((git-repo-name))/concourse/tasks/package/package.sh
   args:
-    - {{git-repo-name}}
+    - ((git-repo-name))
     - output
     - product-blacklist
