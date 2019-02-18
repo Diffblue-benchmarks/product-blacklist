@@ -104,7 +104,7 @@ jobs:
           name: version/version
           tag: version/version
           globs:
-            - output/product-blacklist.jar
+            - output/((project-name)).jar
             - output/manifest.yml
             - output/manifest_prod.yml
 
