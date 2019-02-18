@@ -18,8 +18,10 @@ if [ ! -f product-blacklist-repo/target/*.jar ]; then
     exit -1
 fi
 
+DEST_NAME="$ARTIFACT_NAME.jar"
+
 echo "copying files to output directory"
-cp ${REPO_DIR}/target/*.jar ${BUILD_DIR}/$ARTIFACT_NAME
+cp ${REPO_DIR}/target/*.jar ${BUILD_DIR}/$DEST_NAME
 cp ${REPO_DIR}/concourse/assets/manifest*.yml ${BUILD_DIR}
 
 echo "Final files"
