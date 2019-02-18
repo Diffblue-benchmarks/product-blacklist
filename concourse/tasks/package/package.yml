@@ -20,4 +20,3 @@ run:
     - product-blacklist-repo
     - product-blacklist-jar
     - product-blacklist
-    - version
