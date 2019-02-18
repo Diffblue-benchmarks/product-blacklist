@@ -15,8 +15,8 @@ outputs:
   - name: output
 
 run:
-  path: ((git-repo-name))/concourse/tasks/package/package.sh
+  path: ((git-repo-name1))/concourse/tasks/package/package.sh
   args:
-    - ((git-repo-name))
+    - ((git-repo-name2))
     - output
     - product-blacklist
