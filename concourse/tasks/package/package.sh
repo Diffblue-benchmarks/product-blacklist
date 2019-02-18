@@ -11,9 +11,9 @@ ARTIFACT_NAME=$3
 echo ${REPO_DIR}
 echo ${BUILD_DIR}
 
-mvn -f product-blacklist-repo/pom.xml clean package -X -e
+mvn -f ${REPO_DIR}/pom.xml clean package -X -e
 
-if [ ! -f product-blacklist-repo/target/*.jar ]; then
+if [ ! -f ${REPO_DIR}/target/*.jar ]; then
     echo "No jar files found. Exiting with error"
     exit -1
 fi
