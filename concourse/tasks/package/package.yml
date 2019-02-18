@@ -8,15 +8,15 @@ image_resource:
     tag: latest
 
 inputs:
-  - name: product-blacklist-repo
+  - name: {{git-repo-name}}
   - name: version
 
 outputs:
-  - name: product-blacklist-jar
+  - name: output
 
 run:
-  path: product-blacklist-repo/concourse/tasks/package/package.sh
+  path: ((git-repo-name))/concourse/tasks/package/package.sh
   args:
-    - product-blacklist-repo
-    - product-blacklist-jar
+    - {{git-repo-name}}
+    - output
     - product-blacklist
