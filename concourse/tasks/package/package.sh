@@ -14,6 +14,7 @@ echo ${BUILD_DIR}
 
 mvn -f ${REPO_DIR}/pom.xml clean package -X -e
 
+# Need to force exit with error so that the pipeline aborts when there is an actual build error.
 if [ ! -f ${REPO_DIR}/target/*.jar ]; then
     echo "No jar files found. Exiting with error"
     exit -1

@@ -1,8 +1,19 @@
+project-name: product-blacklist
+
 teams-url: https://outlook.office.com/webhook/1b46a631-7792-4fa6-a35b-1ff3fb8930a2@e11fd634-26b5-47f4-8b8c-908e466e9bdf/IncomingWebhook/ca808a96a2ea4ce1a8f1754876ce7374/699fa872-f173-4a78-b1a9-0923e8dad811
 
+version-repo-uri: git@github.com:JSainsburyPLC/golservices-java-devops.git
+version-repo-branch: master
+version-file: versions/product-blacklist-version
+
+git-repo-name: product-blacklist-repo
+git-repo-uri: https://github.com/JSainsburyPLC/product-blacklist.git
+git-repo-branch: master
 git-key: |
   <your git ssh key>
 git-access-token: <your access token>
+git-release-org: JSainsburyPLC
+git-release-repo: product-blacklist
 
 aws-access-key: <your aws access key>
 aws-secret-key: <your aws secret key>

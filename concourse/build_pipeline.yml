@@ -6,19 +6,19 @@ resource_types:
       tag: latest
 
 resources:
-  - name: product-blacklist-repo
+  - name: {{git-repo-name}}
     type: git
     check_every: 10s
     source:
-      uri: https://github.com/JSainsburyPLC/product-blacklist.git
-      branch: master
+      uri: {{git-repo-uri}}
+      branch: {{git-repo-branch}}
       private_key: {{git-key}}
 
   - name: github-release
     type: github-release
     source:
-      owner: JSainsburyPLC
-      repository: product-blacklist
+      owner: {{git-release-org}}
+      repository: {{git-release-repo}}
       access_token: {{git-access-token}}
 
   - name: test-env
@@ -43,9 +43,9 @@ resources:
     type: semver
     source:
       driver: git
-      uri: git@github.com:JSainsburyPLC/golservices-java-devops.git
-      branch: master
-      file: versions/product-blacklist-version
+      uri: {{version-repo-uri}}
+      branch: {{version-repo-branch}}
+      file: {{version-file}}
       private_key: {{git-key}}
 
   - name: notification
@@ -56,7 +56,7 @@ resources:
 jobs:
   - name: increment-version
     plan:
-      - get: product-blacklist-repo
+      - get: {{git-repo-name}}
         trigger: true
       - get: version
         params: {bump: patch}
@@ -68,9 +68,27 @@ jobs:
       - get: version
         trigger: true
         passed: [increment-version]
-      - get: product-blacklist-repo
+      - get: {{git-repo-name}}
       - task: Build Project
-        file: product-blacklist-repo/concourse/tasks/package/package.yml
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source:
+              repository: maven
+              tag: latest
+          inputs:
+            - name: {{git-repo-name}}
+            - name: version
+          outputs:
+            - name: output
+          run:
+            path: ((git-repo-name))/concourse/tasks/package/package.sh
+            args:
+              - ((git-repo-name))
+              - output
+              - ((git-repo-name))/concourse/assets
+              - ((project-name))
         params:
           version: version/version
         on_failure:
@@ -86,9 +104,9 @@ jobs:
           name: version/version
           tag: version/version
           globs:
-            - product-blacklist-jar/product-blacklist.jar
-            - product-blacklist-jar/manifest.yml
-            - product-blacklist-jar/manifest_prod.yml
+            - output/product-blacklist.jar
+            - output/manifest.yml
+            - output/manifest_prod.yml
 
   - name: deploy-test
     plan:
