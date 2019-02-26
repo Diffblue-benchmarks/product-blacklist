@@ -3,6 +3,7 @@ package co.uk.sainsburys.gol.productblacklist.blacklist.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
@@ -10,6 +11,7 @@ import java.util.Date;
 
 @DynamoDBTable(tableName = "CustomerBlacklist")
 @NoArgsConstructor
+@EqualsAndHashCode
 public class CustomerBlacklistItem {
     @Id
     private CustomerBlacklistId id;

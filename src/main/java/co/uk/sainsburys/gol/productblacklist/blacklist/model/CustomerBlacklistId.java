@@ -3,10 +3,12 @@ package co.uk.sainsburys.gol.productblacklist.blacklist.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class CustomerBlacklistId {
     private String customerId;
     private String sku;

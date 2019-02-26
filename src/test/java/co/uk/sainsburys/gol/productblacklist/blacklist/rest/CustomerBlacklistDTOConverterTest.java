@@ -19,5 +19,4 @@ public class CustomerBlacklistDTOConverterTest {
         assertEquals(testItemA.getCustomerId(), result.getCustomerId());
         assertEquals(testItemA.getSku(), result.getSku());
     }
-
 }

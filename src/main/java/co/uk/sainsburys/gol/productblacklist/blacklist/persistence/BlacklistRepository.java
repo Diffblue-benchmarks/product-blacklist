@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class BlacklistRepository extends DynamoRepository<CustomerBlacklistItem> {
     @Override
     public CustomerBlacklistItem getHashKObject(String hashKey) {
+        if (hashKey == null) throw new IllegalArgumentException("Hashkey cannot be null");
         return new CustomerBlacklistItem(hashKey, null, null);
     }
 }
